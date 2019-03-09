@@ -29,32 +29,38 @@ Page
 				title: "Codes"
 			}
 
-			delegate: Item
-			{
+            delegate: ListItem {
 
-				width: page.width
-				height: menu.active ? menu.height + 160 : 160
-				id: item
+                id: item
+                width: ListView.view.width
+               // height: menu.active? contentHeight + menu.height : contentHeight
+                contentHeight: Theme.itemSizeMedium // two line delegate
 
-				ContextMenu
-				{
-					id: menu
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("ViewCodePage.qml"), { current: modelData })
+                }
 
-					MenuItem
-					{
-						text: "Edit"
-						onClicked: pageStack.push(Qt.resolvedUrl("EditCodePage.qml"), { current: modelData })
-					}
-					MenuItem
-					{
-						text: "Remove"
-						onClicked: main.removeCode(modelData)
-					}
-				}
+                onPressAndHold: menu.active? menu.hide() : menu.show(item)
+
+                menu: ContextMenu
+                        {
+                            id: menu
+
+                            MenuItem
+                            {
+                                text: "Edit"
+                                onClicked: pageStack.push(Qt.resolvedUrl("EditCodePage.qml"), { current: modelData })
+                            }
+                            MenuItem
+                            {
+                                text: "Remove"
+                                onClicked: main.removeCode(modelData)
+                            }
+                        }
 
 				Rectangle
 				{
-					height: 160
+                    height: Theme.itemSizeMedium
 					width: parent.width
 					color: "white"
 
@@ -64,7 +70,7 @@ Page
 						color: "gray"
 						font.family: "Code 128"
 						anchors.centerIn: parent
-						font.pixelSize: 140
+                        font.pixelSize: parent.height
 						text: modelData.generateCode(modelData.code)
 						font.letterSpacing: 0
 						opacity: 0.5
@@ -89,14 +95,6 @@ Page
 							color: "black"
 							anchors.horizontalCenter: parent.horizontalCenter
 						}
-					}
-
-					BackgroundItem
-					{
-						width: parent.width
-						height: parent.height
-						onClicked: pageStack.push(Qt.resolvedUrl("ViewCodePage.qml"), { current: modelData })
-						onPressAndHold: menu.show(item)
 					}
 				}
 			}

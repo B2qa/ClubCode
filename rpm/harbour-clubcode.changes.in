@@ -8,6 +8,13 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Mar 9 2019 rgrnetalk
+Updated to get the app running again:
+- main.cpp removed errors
+- homepage.qml improvement listview and improvement contextmenu
+- edittemplate.qml changed enterkey to go to next field and accept the input
+- mainviewmodel.cpp changed filepath to database location
+
 * Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-1
 - Scrubbed the deck
 - Hoisted the sails

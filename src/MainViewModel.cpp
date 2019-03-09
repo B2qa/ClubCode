@@ -42,7 +42,7 @@ void MainViewModel::removeCode(CodeViewModel *code)
 
 void MainViewModel::load()
 {
-	QFile file(".local/share/harbour-clubcode/database");
+        QFile file("nemo/home/.local/share/harbour-clubcode/database");
 
 	if (file.open(QIODevice::ReadOnly))
 	{
@@ -60,9 +60,9 @@ void MainViewModel::load()
 
 void MainViewModel::save()
 {
-	QDir::current().mkpath(".local/share/harbour-clubcode");
+        QDir::current().mkpath("nemo/home/.local/share/harbour-clubcode");
 
-	QFile file(".local/share/harbour-clubcode/database");
+        QFile file("nemo/home/.local/share/harbour-clubcode/database");
 
 	if (file.open(QIODevice::WriteOnly))
 	{
