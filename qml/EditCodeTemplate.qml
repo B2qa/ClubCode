@@ -8,14 +8,23 @@ Column
 
 	width: parent.width
 
-	TextField
+    TextField
 	{
 		focus: true
 		placeholderText: "Name"
 		label: placeholderText
 		width: parent.width
 		id: name
-		text: context.name
+        text: context.name
+
+        // Show 'next' icon to indicate pressing Enter will move the
+        // keyboard focus to the next text field in the page
+        EnterKey.iconSource: "image://theme/icon-m-enter-next"
+
+        // When Enter key is pressed, move the keyboard focus to the
+        // next field
+        EnterKey.onClicked: description.focus = true
+
 
 		Binding
 		{
@@ -27,12 +36,21 @@ Column
 	}
 
 	TextField
-	{
-		placeholderText: "Description"
+    {
+        id: description
+
+        placeholderText: "Description"
 		label: placeholderText
 		width: parent.width
-		id: description
-		text: context.description
+        text: context.description
+
+        // Show 'next' icon to indicate pressing Enter will move the
+        // keyboard focus to the next text field in the page
+        EnterKey.iconSource: "image://theme/icon-m-enter-next"
+
+        // When Enter key is pressed, move the keyboard focus to the
+        // next field
+        EnterKey.onClicked: code.focus = true
 
 		Binding
 		{
@@ -42,13 +60,17 @@ Column
 		}
 	}
 
-	TextField
-	{
-		placeholderText: "Code"
+    TextField {
+        id: code
+        placeholderText: "Code"
 		label: placeholderText
 		width: parent.width
-		id: code
-		text: context.code
+        text: context.code
+
+        // When Enter key is pressed, move the keyboard focus to the
+        // next field
+        EnterKey.onClicked: accept()
+
 
 		Binding
 		{
